@@ -10,7 +10,7 @@
     <h2>Installation instructions</h2>
   </p>
   <p>
-    <a href="https://github.com/D3S0X/Soundboard/releases">
+    <a href="https://github.com/D3S0X/arch-installation/">
       <img src="https://img.shields.io/github/last-commit/D3S0X/arch-installation.svg?style=flat-square&label=Last%20update" alt="Last Commit" />
     </a>
   </p>
