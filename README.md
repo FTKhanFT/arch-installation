@@ -93,6 +93,12 @@
   - [Oh my zsh:](#oh-my-zsh)
     - [Autosuggestions](#autosuggestions)
   - [Auto clean package cache](#auto-clean-package-cache)
+- [13. Some fixes and tweaks](#13-some-fixes-and-tweaks)
+  - [Compability tweaks](#compability-tweaks)
+    - [Spotify local files](#spotify-local-files)
+  - [Fix on shutdown "Failed to start user manager service for user 174" (sddm)](#fix-on-shutdown-%22failed-to-start-user-manager-service-for-user-174%22-sddm)
+  - [Force Google Emoji](#force-google-emoji)
+  - [Desktop icons for nemo](#desktop-icons-for-nemo)
 
 # 1. Live Setup
 
@@ -557,4 +563,48 @@ Target = *
 Description = Cleaning pacman cache...
 When = PostTransaction
 Exec = /usr/bin/paccache -rk 1
+```
+
+# 13. Some fixes and tweaks
+
+## Compability tweaks
+```
+sudo ln -sf /usr/lib/libncursesw.so.6 /usr/lib/libtinfo.so.5
+```
+### Spotify local files
+```
+yay -S ffmpeg-compat-57
+```
+```
+yay -S ffmpeg
+```
+
+## Fix on shutdown "Failed to start user manager service for user 174" (sddm)
+```
+sudo chage --expiredate -1 sddm
+```
+
+## Force Google Emoji
+```
+sudo nano /etc/fonts/conf.d/50-user.conf
+```
+```xml
+<fontconfig>
+  <match target="pattern">
+    <edit name="family" mode="prepend_first">
+      <string>Icons</string>
+    </edit>
+  </match>
+    
+  <match target="pattern">
+    <edit name="family" mode="prepend_first">
+      <string>Noto Color Emoji</string>
+    </edit>
+  </match>
+</fontconfig>
+```
+
+## Desktop icons for nemo
+```
+gsettings set org.nemo.desktop show-desktop-icons true
 ```
