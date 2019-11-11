@@ -1,3 +1,24 @@
+<div align="center">
+  <p>
+    <h1>
+      <a href="#readme">
+        <img src="https://www.archlinux.org/static/logos/archlinux-logo-dark-1200dpi.b42bd35d5916.png" alt="Arch Logo" />
+      </a>
+      <br />
+      Arch Linux
+    </h1>
+    <h2>Installation instructions</h2>
+  </p>
+  <p>
+    <a href="https://github.com/D3S0X/Soundboard/releases">
+      <img src="https://img.shields.io/github/last-commit/D3S0X/arch-installation.svg?style=flat-square&label=Last%20update" alt="Last Commit" />
+    </a>
+  </p>
+</div>
+
+> This tutorial is inspired by https://sourceforge.net/projects/ezos/files/ArchStuff/
+
+## Index
 - [1. Live Setup](#1-live-setup)
     - [Set keyboard layout](#set-keyboard-layout)
     - [If WiFi install](#if-wifi-install)
@@ -72,9 +93,6 @@
   - [Oh my zsh:](#oh-my-zsh)
     - [Autosuggestions](#autosuggestions)
   - [Auto clean package cache](#auto-clean-package-cache)
-
-
-> This tutorial is inspired by https://sourceforge.net/projects/ezos/files/ArchStuff/
 
 # 1. Live Setup
 
