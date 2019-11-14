@@ -317,8 +317,8 @@ Uncomment ```%wheel ALL=(ALL) ALL```
 ## General packages
 ```
 pacman -S linux-headers linux-lts-headers dkms
-pacman -S jshon expac git wget acpid avahi xdotool pacman-contrib
-systemctl enable acpid avahi-daemon systemd-timesyncd net-tools
+pacman -S jshon expac git wget acpid avahi xdotool pacman-contrib net-tools
+systemctl enable acpid avahi-daemon systemd-timesyncd
 ```
 
 ## Printer support
@@ -448,7 +448,7 @@ pacman -S pavucontrol
 ```
 Qt Desktop:
 ```
-pavucontrol-qt
+pacman -S pavucontrol-qt
 ```
 
 PulseAudio Fix:
