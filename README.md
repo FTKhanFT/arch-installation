@@ -16,14 +16,14 @@
   </p>
 </div>
 
-> This tutorial is inspired by https://sourceforge.net/projects/ezos/files/ArchStuff/
+> This tutorial is inspired by <https://sourceforge.net/projects/ezos/files/ArchStuff/>
 
 ## Index
 - [1. Live Setup](#1-live-setup)
     - [Set keyboard layout](#set-keyboard-layout)
     - [If WiFi install](#if-wifi-install)
     - [Sync time](#sync-time)
-    - [Check if BIOS or UEFI](#check-if-bios-or-uefi)
+    - [Check if booted in BIOS or UEFI](#check-if-booted-in-bios-or-uefi)
 - [2. Partitioning (dos for BIOS / gpt for UEFI)](#2-partitioning-dos-for-bios--gpt-for-uefi)
   - [Partitioning](#partitioning)
     - [Start partitioning tool](#start-partitioning-tool)
@@ -79,16 +79,17 @@
   - [ZSH](#zsh)
 - [11. Reboot](#11-reboot)
 - [12. Post installation](#12-post-installation)
-    - [Set X11 Keymap](#set-x11-keymap)
-    - [WiFi](#wifi)
-    - [If not all user dir's are present:](#if-not-all-user-dirs-are-present)
+  - [Set X11 Keymap](#set-x11-keymap)
+  - [WiFi](#wifi)
   - [AUR Setup:](#aur-setup)
+  - [If not all user dir's are present:](#if-not-all-user-dirs-are-present)
   - [If you want a graphical package manager](#if-you-want-a-graphical-package-manager)
   - [If you use a GTK desktop and want Qt apps to use your GTK Theme:](#if-you-use-a-gtk-desktop-and-want-qt-apps-to-use-your-gtk-theme)
   - [If you want to read APFS Partitions:](#if-you-want-to-read-apfs-partitions)
   - [Fonts:](#fonts)
-    - [Special Fonts:](#special-fonts)
+    - [Nerd Fonts:](#nerd-fonts)
     - [Windows Fonts:](#windows-fonts)
+    - [macOS Fonts:](#macos-fonts)
   - [Nano syntax highlighting:](#nano-syntax-highlighting)
   - [Oh my zsh:](#oh-my-zsh)
     - [Autosuggestions](#autosuggestions)
@@ -117,7 +118,7 @@ wifi-menu
 timedatectl set-ntp true
 ```
 
-### Check if BIOS or UEFI
+### Check if booted in BIOS or UEFI
 ```
 ls /sys/firmware/efi/efivars
 ```
@@ -143,10 +144,10 @@ cfdisk /dev/sdX
 
 ### Create partitions (You may use a separate home partition)
 
-- GPT: EFI system (ef00) / Linux filesystem (8300) / Linux swap (8200)
-- DOS: Primary bootable partition with (83) and primary partition swap (82)
-
-> Size suggestions: 300M EFI system, min 2GB Swap or half of your RAM
+- GPT: EFI system (ef00) / Linux swap (8200) / Linux filesystem (8300)
+- DOS: Primary partition swap (82) / Primary bootable partition with (83)
+- Size suggestions: 300M EFI system, min 2GB Swap or half of your RAM
+- You may want to use a seperate home partiton
 
 ## Formatting partitions
 
@@ -160,12 +161,12 @@ Create root filesystem:
 mkfs.ext4 -L ROOT /dev/sdXY
 ```
 
-If separate home partition:
+If you use a separate home partition:
 ```
 mkfs.ext4 -L HOME /dev/sdXY
 ```
 
-Create Swap
+Create Swap:
 ```
 mkswap -L SWAP /dev/sdXY
 swapon /dev/sdXY
@@ -246,9 +247,9 @@ nano /etc/hosts
 ```
 Add these lines
 ```
-127.0.0.1	localhost
-::1		localhost
-127.0.1.1	myhostname.localdomain	myhostname
+127.0.0.1   localhost
+::1         localhost
+127.0.1.1   myhostname.localdomain  myhostname
 ```
 
 ## Setup locale
@@ -281,7 +282,7 @@ hwclock --systohc --utc
 ```
 nano /etc/pacman.conf
 ```
-Uncomment multilib and add ILoveCandy to Misc section
+Uncomment multilib (and add ILoveCandy to Misc section)
 ```
 pacman -Syu
 ```
@@ -473,19 +474,13 @@ telinit 6
 
 # 12. Post installation
 
-### Set X11 Keymap
+## Set X11 Keymap
 ```
 localectl set-x11-keymap de
 ```
 
-### WiFi
+## WiFi
 You may use the ```nmtui``` to configure your network profile
-
-### If not all user dir's are present:
-```
-sudo pacman -S xdg-user-dirs
-xdg-user-dirs-update
-```
 
 ## AUR Setup:
 ```
@@ -493,6 +488,12 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd .. && rm -r yay
+```
+
+## If not all user dir's are present:
+```
+yay -S xdg-user-dirs
+xdg-user-dirs-update
 ```
 
 ## If you want a graphical package manager
@@ -515,12 +516,12 @@ yay -S linux-apfs-dkms-git
 
 ## Fonts:
 ```
-yay -S ttf-dejavu ttf-opensans otf-san-francisco-pro font-mathematica noto-fonts-emoji freetype2 terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-freefont ttf-inconsolata ttf-liberation ttf-linux-libertine
+yay -S ttf-dejavu ttf-opensans font-mathematica noto-fonts-emoji freetype2 terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-freefont ttf-inconsolata ttf-liberation ttf-linux-libertine powerline-fonts
 ```
 
-### Special Fonts:
+### Nerd Fonts:
 ```
-yay -S nerd-fonts-complete powerline-fonts
+yay -S nerd-fonts-complete
 ```
 
 ### Windows Fonts:
@@ -530,9 +531,14 @@ cd ttf-ms-win10
 READ PKGBUILD and copy all windows files into the directory and run makepkg -si
 ```
 
+### macOS Fonts:
+```
+yay -S otf-san-francisco-pro
+```
+
 ## Nano syntax highlighting:
 ```
-curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
+yay -S nano-syntax-highlighting
 ```
 
 ## Oh my zsh:
@@ -546,7 +552,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 ```
 
 ## Auto clean package cache
-Taken from https://sourceforge.net/projects/ezos/files/ArchStuff/
+Taken from <https://sourceforge.net/projects/ezos/files/ArchStuff/>
 ```
 sudo mkdir /etc/pacman.d/hooks
 sudo nano /etc/pacman.d/hooks/clean_package_cache.hook
