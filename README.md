@@ -27,7 +27,7 @@
 - [2. Partitioning (dos for BIOS / gpt for UEFI)](#2-partitioning-dos-for-bios--gpt-for-uefi)
   - [Partitioning](#partitioning)
     - [Start partitioning tool](#start-partitioning-tool)
-    - [Create partitions (You may use a separate home partition)](#create-partitions-you-may-use-a-separate-home-partition)
+    - [Create partitions](#create-partitions)
   - [Formatting partitions](#formatting-partitions)
 - [3. Mounting accordingly](#3-mounting-accordingly)
 - [4. Base installation](#4-base-installation)
@@ -76,7 +76,9 @@
     - [If you use Wifi:](#if-you-use-wifi)
   - [Some archive and file system utils](#some-archive-and-file-system-utils)
   - [Sound](#sound)
-  - [ZSH](#zsh)
+  - [Other shells](#other-shells)
+    - [zsh (Z Shell)](#zsh-z-shell)
+    - [fish (Friendly interactive shell)](#fish-friendly-interactive-shell)
 - [11. Reboot](#11-reboot)
 - [12. Post installation](#12-post-installation)
   - [Set X11 Keymap](#set-x11-keymap)
@@ -86,13 +88,15 @@
   - [If you want a graphical package manager](#if-you-want-a-graphical-package-manager)
   - [If you use a GTK desktop and want Qt apps to use your GTK Theme:](#if-you-use-a-gtk-desktop-and-want-qt-apps-to-use-your-gtk-theme)
   - [If you want to read APFS Partitions:](#if-you-want-to-read-apfs-partitions)
+  - [Graphics card configuration tool](#graphics-card-configuration-tool)
+    - [AMD](#amd)
+    - [NVIDIA](#nvidia)
   - [Fonts:](#fonts)
+    - [General Fonts:](#general-fonts)
     - [Nerd Fonts:](#nerd-fonts)
     - [Windows Fonts:](#windows-fonts)
     - [macOS Fonts:](#macos-fonts)
   - [Nano syntax highlighting:](#nano-syntax-highlighting)
-  - [Oh my zsh:](#oh-my-zsh)
-    - [Autosuggestions](#autosuggestions)
   - [Auto clean package cache](#auto-clean-package-cache)
 - [13. Some fixes and tweaks](#13-some-fixes-and-tweaks)
   - [Compability tweaks](#compability-tweaks)
@@ -142,7 +146,7 @@ Universal + Graphical:
 cfdisk /dev/sdX
 ```
 
-### Create partitions (You may use a separate home partition)
+### Create partitions
 
 - GPT: EFI system (ef00) / Linux swap (8200) / Linux filesystem (8300)
 - DOS: Primary partition swap (82) / Primary bootable partition with (83)
@@ -424,7 +428,7 @@ pacman -S vulkan-radeon lib32-vulkan-radeon
 
 ## Networking
 ```
-pacman  -S networkmanager networkmanager-openvpn networkmanager-pptp dnsmasq
+pacman -S networkmanager networkmanager-openvpn networkmanager-pptp dnsmasq
 systemctl enable NetworkManager
 ```
 ### If you use Wifi:
@@ -458,11 +462,27 @@ nano /etc/pulse/default.pa
 ```
 Comment out ```# load-module module-role-cork```
 
-## ZSH
+## Other shells
+
+You may want to use another shell than bash
+
+### zsh (Z Shell)
 ```
-pacman -S zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting
+pacman -S zsh zsh-completions zsh-syntax-highlighting
 chsh -s /usr/bin/zsh yourusername
 chsh -s /usr/bin/zsh root
+```
+
+Oh my zsh (framework for managing zsh configuration):
+```
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+### fish (Friendly interactive shell)
+```
+pacman -S fish
+chsh -s /usr/bin/fish yourusername
+chsh -s /usr/bin/fish root
 ```
 
 # 11. Reboot
@@ -514,7 +534,22 @@ echo "export QT_QPA_PLATFORMTHEME=gtk2" >> ~/.profile
 yay -S linux-apfs-dkms-git
 ```
 
+## Graphics card configuration tool
+
+### AMD
+```
+yay -S radeon-profile-git radeon-profile-daemon-git
+systemctl enable --now radeon-profile-daemon
+```
+
+### NVIDIA
+```
+yay -S nvidia-settings
+```
+
 ## Fonts:
+
+### General Fonts:
 ```
 yay -S ttf-dejavu ttf-opensans font-mathematica noto-fonts-emoji freetype2 terminus-font ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-freefont ttf-inconsolata ttf-liberation ttf-linux-libertine powerline-fonts
 ```
@@ -539,16 +574,6 @@ yay -S otf-san-francisco-pro
 ## Nano syntax highlighting:
 ```
 yay -S nano-syntax-highlighting
-```
-
-## Oh my zsh:
-```
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-### Autosuggestions
-```
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
 ## Auto clean package cache
