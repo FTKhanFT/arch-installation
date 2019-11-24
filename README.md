@@ -83,6 +83,7 @@
 - [12. Post installation](#12-post-installation)
   - [Set X11 Keymap](#set-x11-keymap)
   - [WiFi](#wifi)
+  - [Oh my zsh](#oh-my-zsh)
   - [AUR Setup:](#aur-setup)
   - [If not all user dir's are present:](#if-not-all-user-dirs-are-present)
   - [If you want a graphical package manager](#if-you-want-a-graphical-package-manager)
@@ -470,19 +471,12 @@ You may want to use another shell than bash
 ```
 pacman -S zsh zsh-completions zsh-syntax-highlighting
 chsh -s /usr/bin/zsh yourusername
-chsh -s /usr/bin/zsh root
-```
-
-Oh my zsh (framework for managing zsh configuration):
-```
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
 ### fish (Friendly interactive shell)
 ```
 pacman -S fish
 chsh -s /usr/bin/fish yourusername
-chsh -s /usr/bin/fish root
 ```
 
 # 11. Reboot
@@ -501,6 +495,12 @@ localectl set-x11-keymap de
 
 ## WiFi
 You may use the ```nmtui``` to configure your network profile
+
+## Oh my zsh
+A handy framework for managing your zsh configuration
+```
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
 
 ## AUR Setup:
 ```
