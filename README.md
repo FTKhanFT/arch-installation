@@ -350,7 +350,7 @@ pacman -S lxde
 ```
 ### LXQt:
 ```
-pacman -S lxqt breeze-icons pcmanfm-qt qterminal
+pacman -S lxqt breeze-icons pcmanfm-qt qterminal lxqt-sudo polkit-qt5
 ```
 ### GNOME:
 ```
