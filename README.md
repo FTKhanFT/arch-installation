@@ -165,6 +165,7 @@ cfdisk /dev/sdX
 #### Swap
 
 Taken from <https://docs.voidlinux.org/installation/live-images/partitions.html>
+
 | System RAM | Recommended swap space | Swap space if using hibernation |
 |------------|------------------------|---------------------------------|
 | < 2GB      | 2x the amount of RAM   | 3x the amount of RAM            |
