@@ -28,6 +28,9 @@
   - [Partitioning](#partitioning)
     - [Start partitioning tool](#start-partitioning-tool)
     - [Create partitions](#create-partitions)
+    - [Size recommendations](#size-recommendations)
+      - [EFI system](#efi-system)
+      - [Swap](#swap)
   - [Formatting partitions](#formatting-partitions)
 - [3. Mounting accordingly](#3-mounting-accordingly)
 - [4. Base installation](#4-base-installation)
@@ -151,8 +154,23 @@ cfdisk /dev/sdX
 
 - GPT: EFI system (ef00) / Linux swap (8200) / Linux filesystem (8300)
 - DOS: Primary partition swap (82) / Primary bootable partition with (83)
-- Size suggestions: 300M EFI system, min 2GB Swap or half of your RAM
 - You may want to use a seperate home partiton
+
+### Size recommendations
+
+#### EFI system
+- At least: 150MB
+- Recommended: 300MB
+
+#### Swap
+
+Taken from <https://docs.voidlinux.org/installation/live-images/partitions.html>
+| System RAM | Recommended swap space | Swap space if using hibernation |
+|------------|------------------------|---------------------------------|
+| < 2GB      | 2x the amount of RAM   | 3x the amount of RAM            |
+| 2-8GB      | Equal to amount of RAM | 2x the amount of RAM            |
+| 8-64GB     | At least 4GB           | 1.5x the amount of RAM          |
+| 64GB       | At least 4GB           | Hibernation not recommended     |
 
 ## Formatting partitions
 
