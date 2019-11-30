@@ -292,7 +292,7 @@ mkinitcpio -p linux-lts
 # 6. Setup time/date and languages
 
 ## Setup hostname
-📛 This will the name of your PC on your network
+📛 This will be the name of your PC on your network
 ```
 echo myhostname > /etc/hostname
 nano /etc/hosts
@@ -325,7 +325,7 @@ echo KEYMAP=de-latin1 > /etc/vconsole.conf
 
 ## Setup time & date
 
-📅 You tab-complete your stuff after zoneinfo
+📅 You can tab-complete your stuff after zoneinfo
 ```
 ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
 hwclock --systohc --utc
@@ -566,7 +566,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 ```
 
 ## AUR Setup
-The Arch User Repository is a community-driven repository for Arch users. Yay is a pacman wrapper that allows installing AUR packages
+The Arch User Repository is a community-driven repository for Arch users. ```yay``` is a pacman wrapper that allows installing AUR packages
 ```
 git clone https://aur.archlinux.org/yay.git
 cd yay
